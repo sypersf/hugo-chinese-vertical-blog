@@ -1,0 +1,26 @@
+{{ if eq .Section "posts" }}
+<style>
+/* 锁定容器不超屏 */
+.post-content {
+  writing-mode: vertical-rl;
+  font-family: "Noto Serif SC", serif;
+  font-size: 18px;
+  line-height: 2.0;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 140px);
+  overflow: hidden !important;
+}
+.post-content h1,.post-content h2,.post-content h3{margin:0 0.5em 0 0}
+.post-content p{text-indent:2em;margin:0 0.5em 0 0}
+.post-content img{max-width:200px}
+
+@media(max-width:768px){
+  .post-content{font-size:16px;max-height:calc(100vh - 100px)}
+}
+@media(max-width:768px) and (orientation:portrait){
+  .post-content{writing-mode:horizontal-tb;max-width:none;max-height:none;overflow:visible!important}
+  .post-content p{margin:0 0 0.5em 0}
+  .post-content img{max-width:100%}
+}
+</style>
+{{ end }}

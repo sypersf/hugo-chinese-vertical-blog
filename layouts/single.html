@@ -1,0 +1,19 @@
+{{- define "main" }}
+
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}<div class="post-description">{{ .Description }}</div>{{- end }}
+    {{- if not (.Param "hideMeta") }}
+    <div class="post-meta">{{- partial "post_meta.html" . -}}</div>
+    {{- end }}
+  </header>
+  {{- if .Content }}
+  <div class="post-content md-content" id="pc">{{ .Content }}</div>
+  <div class="pager-nav"><button id="pp" onclick="fp(-1)">◀</button><span id="pi">1/1</span><button id="pn" onclick="fp(1)">▶</button></div>
+  {{- end }}
+  <footer class="post-footer">{{- partial "post_nav_links.html" . }}</footer>
+</article>
+
+{{- end }}
