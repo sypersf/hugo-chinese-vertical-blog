@@ -17,6 +17,17 @@
 .post-content p{text-indent:2em;margin:0 0.5em 0 0}
 .post-content img{max-width:200px}
 
+.nav-arrow {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(128,128,128,0.15); border: none;
+  color: rgba(128,128,128,0.5); font-size: 16px; cursor: pointer;
+  z-index: 10;
+}
+.nav-arrow:hover { background: rgba(128,128,128,0.3); }
+.nav-prev { left: 8px; }
+.nav-next { right: 8px; }
+
 @media(max-width:768px){
   .post-content{font-size:16px;height:calc(100vh - 100px)}
 }
@@ -25,12 +36,16 @@
   .post-content{writing-mode:horizontal-tb;height:auto;overflow-x:hidden;overflow-y:auto}
   .post-content p{margin:0 0 0.5em 0}
   .post-content img{max-width:100%}
+  .nav-arrow{display:none}
 }
 </style>
+<button class="nav-arrow nav-prev" onclick="var e=document.querySelector('.post-content');e.scrollBy({left:-e.clientWidth*0.8,behavior:'smooth'})">◀</button>
+<button class="nav-arrow nav-next" onclick="var e=document.querySelector('.post-content');e.scrollBy({left:e.clientWidth*0.8,behavior:'smooth'})">▶</button>
 <script>
 (function(){
   var el = document.querySelector('.post-content');
   if(!el) return;
+  // 滚到开头
   var check = function(){
     if(el.scrollWidth > el.clientWidth + 10){
       el.scrollLeft = el.scrollWidth;
@@ -39,6 +54,11 @@
     setTimeout(check, 200);
   };
   check();
+  // 鼠标滚轮 → 横向滚动
+  el.addEventListener('wheel', function(e){
+    e.preventDefault();
+    el.scrollBy({left: e.deltaY, behavior: 'auto'});
+  }, {passive: false});
 })();
 </script>
 {{ end }}
