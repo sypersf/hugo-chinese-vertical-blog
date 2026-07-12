@@ -1,8 +1,0 @@
-baseURL = "https://example.com/"
-languageCode = "zh-cn"
-title = "My Blog"
-theme = "PaperMod"
-
-[params]
-homeInfoParams.Title = "My Blog"
-homeInfoParams.Content = "A blog with vertical Chinese writing"
