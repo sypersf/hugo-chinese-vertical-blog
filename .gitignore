@@ -6,3 +6,4 @@ winsw.*
 *.py  
 themes/  
 hugo_local.toml  
+hugo.local.toml  
