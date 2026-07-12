@@ -10,8 +10,7 @@
     {{- end }}
   </header>
   {{- if .Content }}
-  <div class="post-content md-content" id="pc">{{ .Content }}</div>
-  <div class="pager-nav"><button id="pp" onclick="fp(-1)">◀</button><span id="pi">1/1</span><button id="pn" onclick="fp(1)">▶</button></div>
+  <div class="post-content-wrap"><div class="post-content md-content">{{ .Content }}</div></div>
   {{- end }}
   <footer class="post-footer">{{- partial "post_nav_links.html" . }}</footer>
 </article>

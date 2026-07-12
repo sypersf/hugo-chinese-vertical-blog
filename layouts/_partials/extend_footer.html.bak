@@ -5,19 +5,17 @@
   if(window.innerWidth<768 && window.matchMedia('(orientation:portrait)').matches) return;
 
   var origHTML = pc.innerHTML;
-  var vh = pc.clientHeight - 10;
-  var vw = pc.clientWidth - 10;
+  var vh = pc.clientHeight;
+  var vw = pc.clientWidth;
   var fz = window.innerWidth < 768 ? 16 : 18;
-  var lh = fz * 2;
   
   var m = document.createElement('div');
-  m.style.cssText = 'writing-mode:vertical-rl;font-family:Noto Serif SC,serif;font-size:'+fz+'px;line-height:'+lh+'px;position:absolute;left:-9999px;height:'+vh+'px';
+  m.style.cssText = 'writing-mode:vertical-rl;font-family:Noto Serif SC,serif;font-size:'+fz+'px;line-height:2;position:absolute;left:-9999px;height:'+vh+'px';
   m.innerHTML = origHTML;
   document.body.appendChild(m);
   
-  // 精确测列宽
   var test = document.createElement('span');
-  test.textContent = '测';
+  test.textContent = 'M';
   test.style.cssText = 'display:inline-block';
   m.appendChild(test);
   var colW = test.getBoundingClientRect().width;
@@ -32,15 +30,12 @@
   
   if(totalPages <= 1) return;
   
-  pc.style.overflow = 'hidden';
-  pc.style.width = vw + 'px';
-  pc.style.height = vh + 'px';
   pc.style.position = 'relative';
   pc.style.touchAction = 'none';
   pc.innerHTML = '';
   
   var content = document.createElement('div');
-  content.style.cssText = 'writing-mode:vertical-rl;font-family:Noto Serif SC,serif;font-size:'+fz+'px;line-height:'+lh+'px;height:'+vh+'px;width:100%;position:absolute;top:0;right:0;transition:right 0.3s ease';
+  content.style.cssText = 'writing-mode:vertical-rl;font-family:Noto Serif SC,serif;font-size:'+fz+'px;line-height:2;height:'+vh+'px;position:absolute;top:0;right:0;transition:right 0.3s ease';
   content.innerHTML = origHTML;
   pc.appendChild(content);
   

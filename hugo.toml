@@ -1,8 +1,8 @@
-baseURL = "https://example.com/"
+baseURL = "https://blog.weamoy.net/"
 languageCode = "zh-cn"
-title = "My Blog"
+title = "MnGk's Notes"
 theme = "PaperMod"
 
 [params]
-homeInfoParams.Title = "My Blog"
-homeInfoParams.Content = "A blog with vertical Chinese writing"
+homeInfoParams.Title = "MnGk's Notes"
+homeInfoParams.Content = "旅行 · 阅读 · 思考"

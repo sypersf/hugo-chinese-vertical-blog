@@ -1,26 +1,44 @@
 {{ if eq .Section "posts" }}
 <style>
-/* 锁定容器不超屏 */
+.post-content-wrap { max-width: 100vw; overflow: hidden; display: flex; justify-content: center; }
 .post-content {
   writing-mode: vertical-rl;
   font-family: "Noto Serif SC", serif;
   font-size: 18px;
   line-height: 2.0;
-  max-width: calc(100vw - 40px);
-  max-height: calc(100vh - 140px);
-  overflow: hidden !important;
+  height: calc(100vh - 140px);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.post-content::-webkit-scrollbar { display: none; }
 .post-content h1,.post-content h2,.post-content h3{margin:0 0.5em 0 0}
 .post-content p{text-indent:2em;margin:0 0.5em 0 0}
 .post-content img{max-width:200px}
 
 @media(max-width:768px){
-  .post-content{font-size:16px;max-height:calc(100vh - 100px)}
+  .post-content{font-size:16px;height:calc(100vh - 100px)}
 }
 @media(max-width:768px) and (orientation:portrait){
-  .post-content{writing-mode:horizontal-tb;max-width:none;max-height:none;overflow:visible!important}
+  .post-content-wrap{display:block}
+  .post-content{writing-mode:horizontal-tb;height:auto;overflow-x:hidden;overflow-y:auto}
   .post-content p{margin:0 0 0.5em 0}
   .post-content img{max-width:100%}
 }
 </style>
+<script>
+(function(){
+  var el = document.querySelector('.post-content');
+  if(!el) return;
+  var check = function(){
+    if(el.scrollWidth > el.clientWidth + 10){
+      el.scrollLeft = el.scrollWidth;
+      return;
+    }
+    setTimeout(check, 200);
+  };
+  check();
+})();
+</script>
 {{ end }}
